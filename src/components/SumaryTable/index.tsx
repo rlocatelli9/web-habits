@@ -12,7 +12,10 @@ const weekDays = [
   'S',
 ]
 
-const sumaryDates = generateDatesFromYearBeginning()
+const summaryDates = generateDatesFromYearBeginning()
+
+const minimumSummaryDatesSize = 18 * 7 //18 weeks
+const ammountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length
 
 
 export const SumaryTable: React.FC = () => {
@@ -31,12 +34,18 @@ export const SumaryTable: React.FC = () => {
         }             
       </div>
 
-      <div className="grid grid-rows-7 grid-flow-col gap-3">
+      <div className="grid grid-rows-7 grid-flow-col gap-3 overflow-x-auto">
         {
-          sumaryDates.map(date => (
+          summaryDates.map(date => (
             <HabitDay key={date.toString()}/>
           ))
         }
+        {ammountOfDaysToFill > 0 ? Array.from({length: ammountOfDaysToFill}).map((_, index) => (
+          <div 
+            key={index} 
+            className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg opacity-40 cursor-not-allowed"
+          />
+        )): null}
       </div>
     </div>
   )
