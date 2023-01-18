@@ -1,4 +1,5 @@
 import React from 'react';
+import { generateDatesFromYearBeginning } from '../../utils/generate-dates-from-year-beginning';
 import { HabitDay } from '../HabitDay';
 
 const weekDays = [
@@ -10,6 +11,8 @@ const weekDays = [
   'S',
   'S',
 ]
+
+const sumaryDates = generateDatesFromYearBeginning()
 
 
 export const SumaryTable: React.FC = () => {
@@ -29,17 +32,11 @@ export const SumaryTable: React.FC = () => {
       </div>
 
       <div className="grid grid-rows-7 grid-flow-col gap-3">
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
-        <HabitDay />
+        {
+          sumaryDates.map(date => (
+            <HabitDay key={date.toString()}/>
+          ))
+        }
       </div>
     </div>
   )
