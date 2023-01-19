@@ -37,7 +37,11 @@ export const SumaryTable: React.FC = () => {
       <div className="grid grid-rows-7 grid-flow-col gap-3 overflow-x-auto">
         {
           summaryDates.map(date => (
-            <HabitDay key={date.toString()}/>
+            <HabitDay 
+              key={date.toString()}
+              completed={Math.round(Math.random()*5)} 
+              amount={5}
+            />
           ))
         }
         {ammountOfDaysToFill > 0 ? Array.from({length: ammountOfDaysToFill}).map((_, index) => (
