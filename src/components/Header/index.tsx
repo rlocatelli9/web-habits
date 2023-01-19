@@ -3,7 +3,18 @@ import {Plus} from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  toggleModal():void;
+}
+
+
+
+export const Header: React.FC<HeaderProps> = ({toggleModal}) => {  
+
+  const handleButtonClick = () => {
+    toggleModal()
+  }
+
   return (
     <header className="w-full max-w-3xl mx-auto flex items-center justify-between">
       <img src={logo} alt="Habits" />
@@ -11,6 +22,7 @@ export const Header: React.FC = () => {
       <button 
         type="button"
         className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:border-violet-300"
+        onClick={handleButtonClick}
       >
         <Plus size={20} className="text-violet-500"/>
         Novo hábito
