@@ -1,18 +1,20 @@
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 import React from 'react';
 import Checkbox from '../Checkbox';
 import ProgressBar from '../ProgressBar';
 
 interface HabitDayProps {
-  completed: number;
-  amount: number;
+  completed?: number;
+  amount?: number;
+  date: Date;
 }
 
-export const HabitDay: React.FC<HabitDayProps> = ({completed, amount}) => {
+export const HabitDay: React.FC<HabitDayProps> = ({completed = 0, amount = 0, date}) => {
 
   const returnProgress = () => {
-    if(completed && amount) {
+    if(amount > 0) {
       const result = Math.round((completed/amount) * 100)
       if(result <= 100) return result
       else return 100
@@ -21,6 +23,9 @@ export const HabitDay: React.FC<HabitDayProps> = ({completed, amount}) => {
   }
 
   const progress = returnProgress()
+
+  const dayInMonth = dayjs(date).format('DD/MM')
+  const dayOfWeek = dayjs(date).format('dddd')
  
   return (
     <Popover.Root>
@@ -38,16 +43,19 @@ export const HabitDay: React.FC<HabitDayProps> = ({completed, amount}) => {
     />
     <Popover.Portal>
       <Popover.Content className="min-w-[320px] p-6 rounded-2xl bg-zinc-900 flex flex-col">
-        <span className="font-semibold text-zinc-400">terça-feira</span>
-        <span className="mt-1 font-extrabold leading-tight text-3xl">17/01</span>
+        <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
+        <span className="mt-1 font-extrabold leading-tight text-3xl">{dayInMonth}</span>
 
         <ProgressBar completed={completed} amount={amount} progress={progress} />
 
-        <Checkbox contentLabel={(
-          <span className="text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
-            Beber 2L de água
-          </span>
-        )}/>
+        <Checkbox
+          onCheckedChange={()=>{}}
+          contentLabel={(
+            <span className="text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
+              Beber 2L de água
+            </span>
+          )}
+        />
         <Popover.Arrow height={8} width={16} className="fill-zinc-900"/>
       </Popover.Content>
     </Popover.Portal>

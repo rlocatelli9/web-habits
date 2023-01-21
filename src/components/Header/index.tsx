@@ -2,14 +2,9 @@ import React from 'react';
 import {Plus} from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
+import { IHeaderProps } from '../../intefaces';
 
-interface HeaderProps {
-  toggleModal():void;
-}
-
-
-
-export const Header: React.FC<HeaderProps> = ({toggleModal}) => {  
+export const Header: React.FC<IHeaderProps> = ({toggleModal}) => {  
 
   const handleButtonClick = () => {
     toggleModal()
@@ -18,7 +13,6 @@ export const Header: React.FC<HeaderProps> = ({toggleModal}) => {
   return (
     <header className="w-full max-w-3xl mx-auto flex items-center justify-between">
       <img src={logo} alt="Habits" />
-
       <button 
         type="button"
         className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:border-violet-300"
