@@ -4,22 +4,8 @@ import { api } from '../../lib/axios';
 import { generateDatesFromYearBeginning } from '../../utils/generate-dates-from-year-beginning';
 import { HabitDay } from '../HabitDay';
 
-type ISummary = Array<{
-  amount: number;
-  completed: number;
-  date: string;
-  id: string;
-}>
-
-const weekDays = [
-  'D',
-  'S',
-  'T',
-  'Q',
-  'Q',
-  'S',
-  'S',
-]
+import { ISummary } from '../../intefaces';
+import { WEEK_DAYS } from '../../utils/constants';
 
 const summaryDates = generateDatesFromYearBeginning()
 
@@ -41,7 +27,7 @@ export const SumaryTable: React.FC = () => {
     <div className="w-full flex">
       <div className="grid grid-rows-7 grid-flow-row gap-3">
         {
-          weekDays.map((day, index) => (
+          WEEK_DAYS.map((day, index) => (
             <div 
               key={`${day}-${index}`} 
               className="text-zinc-400 text-xl h-10 w-10 font-bold flex items-center justify-center"

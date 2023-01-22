@@ -1,20 +1,12 @@
 import { Check } from 'phosphor-react';
-import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { INewHabitForm } from '../../intefaces';
 import { api } from '../../lib/axios';
 import Checkbox from '../Checkbox';
 
-const availableWeekDays = [
-  'Domingo',
-  'Segunda-feira',
-  'Terça-feira',
-  'Quarta-feira',
-  'Quinta-feira',
-  'Sexta-feira',
-  'Sábado'
-]
+import { AVAILABLE_WEEK_DAYS } from '../../utils/constants';
 
-export const NewHabitForm: React.FC<INewHabitForm> = ({onOpenChangeAlert}) => {
+export const NewHabitForm: React.FC<INewHabitForm> = ({handleFeedbackAlert}) => {
   const [title, setTitle] = useState<string>('')
   const [weekdays, setWeekDays] = useState<number[]>([])
 
@@ -23,13 +15,16 @@ export const NewHabitForm: React.FC<INewHabitForm> = ({onOpenChangeAlert}) => {
     event.preventDefault();
 
     if(!title || weekdays.length === 0){
-      onOpenChangeAlert({message: 'Please fill form', status: 'ERROR'})
+      handleFeedbackAlert({message: 'Por favor, preencha o formulário.', status: 'ERROR'})
       return 
     }
 
     await api.post('/habits', {title, weekdays})    
 
-    onOpenChangeAlert({message: 'Seu novo hábito foi criado', status: 'SUCCESS'})
+    handleFeedbackAlert({message: 'Seu novo hábito foi criado.', status: 'SUCCESS'})
+
+    setTitle('')
+    setWeekDays([])
 
   }
 
@@ -54,6 +49,7 @@ export const NewHabitForm: React.FC<INewHabitForm> = ({onOpenChangeAlert}) => {
           placeholder="ex.: Ler livro, Estudar, etc..." 
           className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder: text-zinc-400"      
           autoFocus
+          value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
 
@@ -62,14 +58,15 @@ export const NewHabitForm: React.FC<INewHabitForm> = ({onOpenChangeAlert}) => {
         </label>
 
         <div className="flex flex-col gap-2 mt-3">
-          {availableWeekDays.map((day, index) => (
+          {AVAILABLE_WEEK_DAYS.map((day, index) => (
             <Checkbox 
-              key={day} 
-              contentLabel={(
+              key={day}
+              checked={weekdays.includes(index)}
+              children={(
                 <span className="text-white leading-tight">
                   {day}
                 </span>
-              )}   
+              )}                            
               onCheckedChange={() => handleCheckbox(index)}         
             />
           ))}

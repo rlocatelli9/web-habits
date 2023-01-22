@@ -1,18 +1,14 @@
 import * as Progress from '@radix-ui/react-progress';
 import React from 'react';
+import { IProgressBar } from '../../intefaces';
 
-interface ProgressBarProps {
-  completed: number;
-  amount: number;
-  progress: number;
-}
 
-const ProgressBar: React.FC<ProgressBarProps> = ({completed, amount, progress}) => {
+const ProgressBar: React.FC<IProgressBar> = ({value, max, progress}) => {
   
   return (
     <Progress.Root 
-      value={completed}
-      max={amount}  
+      value={value}
+      max={max}  
       getValueLabel={(value: number, max: number) =>{
         return `${value} hábitos de ${max} foram completados nesse dia`
       }}

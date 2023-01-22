@@ -12,11 +12,11 @@ export const Alert: React.FC<IAlert> = ({open, feedback, onOpenChange}) => {
           <AlertDialog.Title className="text-3xl leading-tight font-extrabold">
             {feedback.status === 'ERROR' ? 'Atenção!' : 'Parabéns!' }
           </AlertDialog.Title>    
-          <AlertDialog.Description>
+          <AlertDialog.Description className="mt-2">
             {feedback.message}
           </AlertDialog.Description> 
           <div className='flex items-center justify-end'>          
-          <AlertDialog.Action className="ml-6 mt-6 rounded-lg p-2 flex items-center justify-center gap-3 font-semibol bg-green-600 hover:bg-green-500">            
+          <AlertDialog.Action className="uppercase ml-6 mt-4 rounded-lg p-2 flex items-center justify-center gap-3 font-semibol bg-green-600 hover:bg-green-500">            
             Entendi
           </AlertDialog.Action>
           </div>   

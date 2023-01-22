@@ -5,13 +5,9 @@ import React from 'react';
 import Checkbox from '../Checkbox';
 import ProgressBar from '../ProgressBar';
 
-interface HabitDayProps {
-  completed?: number;
-  amount?: number;
-  date: Date;
-}
+import { IHabitDay } from '../../intefaces';
 
-export const HabitDay: React.FC<HabitDayProps> = ({completed = 0, amount = 0, date}) => {
+export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date}) => {
 
   const returnProgress = () => {
     if(amount > 0) {
@@ -46,11 +42,11 @@ export const HabitDay: React.FC<HabitDayProps> = ({completed = 0, amount = 0, da
         <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
         <span className="mt-1 font-extrabold leading-tight text-3xl">{dayInMonth}</span>
 
-        <ProgressBar completed={completed} amount={amount} progress={progress} />
+        <ProgressBar value={completed} max={amount} progress={progress} />
 
         <Checkbox
           onCheckedChange={()=>{}}
-          contentLabel={(
+          children={(
             <span className="text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
               Beber 2L de água
             </span>

@@ -2,9 +2,9 @@ import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'phosphor-react';
 import { NewHabitForm } from '../NewHabitForm';
-import { IModalProps } from '../../intefaces';
+import { IModal } from '../../intefaces';
 
-export const Modal: React.FC<IModalProps> = ({open, onOpenChange, onOpenChangeAlert}) => {
+export const Modal: React.FC<IModal> = ({open, onOpenChange, handleFeedbackAlert}) => {
 
   
   return (
@@ -19,7 +19,7 @@ export const Modal: React.FC<IModalProps> = ({open, onOpenChange, onOpenChangeAl
           <Dialog.Title className="text-3xl leading-tight font-extrabold">
             Criar novo hábito
           </Dialog.Title>        
-          <NewHabitForm  onOpenChangeAlert={onOpenChangeAlert}/>
+          <NewHabitForm  handleFeedbackAlert={handleFeedbackAlert}/>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

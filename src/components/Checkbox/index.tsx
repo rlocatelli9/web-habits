@@ -1,26 +1,15 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { Check } from 'phosphor-react';
+import { ICheckbox } from '../../intefaces';
 
-type CheckedState = boolean | 'indeterminate';
-
-interface CheckboxProps {
-  contentLabel: ReactElement;
-  onCheckedChange(checked: CheckedState): void
-}
-
-const Checkbox: React.FC<CheckboxProps> = ({contentLabel, onCheckedChange}) => {
-  if(!contentLabel) return null
-
-  /**
-   * <span className="font-semibold text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
-          Beber 2L de água
-        </span>
-   */
+const Checkbox: React.FC<ICheckbox> = ({children, checked, onCheckedChange}) => {
+  if(!children) return null
 
   return (
     <div className="mt-6 flex flex-col gap-3">    
       <CheckboxRadix.Root 
+        checked={checked}
         onCheckedChange={onCheckedChange}
         className="flex items-center gap-3 group"
       >        
@@ -29,7 +18,7 @@ const Checkbox: React.FC<CheckboxProps> = ({contentLabel, onCheckedChange}) => {
             <Check size={20} className="text-white" />
           </CheckboxRadix.Indicator>
         </div>
-        {contentLabel}
+        {children}
       </CheckboxRadix.Root>
     </div>
   )
