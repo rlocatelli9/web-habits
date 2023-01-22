@@ -34,6 +34,21 @@ export type ISummary = Array<{
   id: string;
 }>
 
+export interface IHabitsList {
+  date: Date;
+}
+
+export interface IPossibleHabitsList {
+  created_at: string;
+  id: string;
+  title: string;
+}
+
+export interface IHabitsInfo {
+  completedHabits:  Array<string>
+  possibleHabits: Array<IPossibleHabitsList> 
+}
+
 export interface IProgressBar extends Progress.ProgressProps{
   progress: number;
 }

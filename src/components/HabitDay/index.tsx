@@ -6,9 +6,9 @@ import Checkbox from '../Checkbox';
 import ProgressBar from '../ProgressBar';
 
 import { IHabitDay } from '../../intefaces';
+import {HabitsList} from '../HabitsList';
 
 export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date}) => {
-
   const returnProgress = () => {
     if(amount > 0) {
       const result = Math.round((completed/amount) * 100)
@@ -22,7 +22,7 @@ export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date})
 
   const dayInMonth = dayjs(date).format('DD/MM')
   const dayOfWeek = dayjs(date).format('dddd')
- 
+
   return (
     <Popover.Root>
     <Popover.Trigger 
@@ -44,14 +44,8 @@ export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date})
 
         <ProgressBar value={completed} max={amount} progress={progress} />
 
-        <Checkbox
-          onCheckedChange={()=>{}}
-          children={(
-            <span className="text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
-              Beber 2L de água
-            </span>
-          )}
-        />
+        <HabitsList date={date}/>
+        
         <Popover.Arrow height={8} width={16} className="fill-zinc-900"/>
       </Popover.Content>
     </Popover.Portal>
