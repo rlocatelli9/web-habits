@@ -6,7 +6,7 @@ import { api } from '../../lib/axios';
 
 import { IHabitsList, IPossibleHabitsList } from '../../intefaces';
 
-export const HabitsList: React.FC<IHabitsList> = ({date}) => {
+export const HabitsList: React.FC<IHabitsList> = ({date, onCompletedChange}) => {
   const [possibleHabits, setPossibleHabits] = useState<IPossibleHabitsList[]>([])
   const [completedHabits, setCompletedHabits] = useState<string[]>([])
 
@@ -35,8 +35,10 @@ export const HabitsList: React.FC<IHabitsList> = ({date}) => {
     }
 
     setCompletedHabits(newCompletedHabits)
+
+    onCompletedChange(newCompletedHabits.length)
     
-  }, [])
+  }, [onCompletedChange, completedHabits, api])
 
   const isDateInPast = dayjs(date).endOf('day').isBefore(new Date())
 

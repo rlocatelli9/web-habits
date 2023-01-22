@@ -1,32 +1,40 @@
 import * as Popover from '@radix-ui/react-popover';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import React from 'react';
-import Checkbox from '../Checkbox';
+import React, { useCallback, useEffect, useState } from 'react';
 import ProgressBar from '../ProgressBar';
 
 import { IHabitDay } from '../../intefaces';
 import {HabitsList} from '../HabitsList';
 
-export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date}) => {
-  const returnProgress = () => {
-    if(amount > 0) {
-      const result = Math.round((completed/amount) * 100)
-      if(result <= 100) return result
-      else return 100
-    }
-    return 0
-  }
+export const HabitDay: React.FC<IHabitDay> = ({defaultCompleted = 0, amount = 0, date}) => {
+  const [completed, setCompleted] = useState(defaultCompleted)
+  const [progress, setProgress] = useState(0)
 
-  const progress = returnProgress()
+  const returnProgress = useCallback(() => {
+    const result = Math.round((completed/amount) * 100)
+    if(result <= 100) return result
+    else return 100
+  },[completed])
+
+  useEffect(() => {
+    console.log('mudou')
+    if(amount > 0) setProgress(returnProgress())
+    else setProgress(0)
+  }, [completed, amount])
+
 
   const dayInMonth = dayjs(date).format('DD/MM')
   const dayOfWeek = dayjs(date).format('dddd')
 
+  const onCompletedChange = (completedTotal: number) => {
+    setCompleted(completedTotal)
+  }
+
   return (
     <Popover.Root>
     <Popover.Trigger 
-      className={clsx("w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg", {
+      className={clsx("w-10 h-10 border-2 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background", {
         'bg-zinc-900 border-zinc-800' : progress === 0,
         'bg-violet-400 border-violet-500': progress > 0 && progress < 20,
         'bg-violet-500 border-violet-400': progress >= 20 && progress < 40,
@@ -44,7 +52,7 @@ export const HabitDay: React.FC<IHabitDay> = ({completed = 0, amount = 0, date})
 
         <ProgressBar value={completed} max={amount} progress={progress} />
 
-        <HabitsList date={date}/>
+        <HabitsList date={date} onCompletedChange={onCompletedChange}/>
         
         <Popover.Arrow height={8} width={16} className="fill-zinc-900"/>
       </Popover.Content>

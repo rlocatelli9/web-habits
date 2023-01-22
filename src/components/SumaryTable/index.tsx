@@ -40,7 +40,7 @@ export const SumaryTable: React.FC = () => {
 
       <div className="grid grid-rows-7 grid-flow-col gap-3 overflow-x-auto">
         {
-          summaryDates.map(date => {
+          summary.length > 0 && summaryDates.map(date => {
             const dayInSummary = summary.find(day => {
               return dayjs(date).isSame(day.date, 'day')
             })
@@ -48,7 +48,7 @@ export const SumaryTable: React.FC = () => {
             return (
               <HabitDay 
                 key={date.toString()}
-                completed={dayInSummary?.completed} 
+                defaultCompleted={dayInSummary?.completed} 
                 amount={dayInSummary?.amount}
                 date={date}
               />

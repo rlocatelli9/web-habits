@@ -4,6 +4,8 @@ import { IProgressBar } from '../../intefaces';
 
 
 const ProgressBar: React.FC<IProgressBar> = ({value, max, progress}) => {
+
+  console.log({value, max, progress})
   
   return (
     <Progress.Root 
@@ -16,7 +18,7 @@ const ProgressBar: React.FC<IProgressBar> = ({value, max, progress}) => {
       className="h-3 rounded-xl bg-zinc-700 w-full mt-4"
     >
       <Progress.Indicator 
-        className="h-3 rounded-xl bg-violet-600"
+        className="h-3 rounded-xl bg-violet-600 transition-all"
         style={{ width: `${progress}%`}}
       />
     </Progress.Root>

@@ -22,7 +22,7 @@ export interface INewHabitForm {
 }
 
 export interface IHabitDay {
-  completed?: number;
+  defaultCompleted?: number;
   amount?: number;
   date: Date;
 }
@@ -36,6 +36,7 @@ export type ISummary = Array<{
 
 export interface IHabitsList {
   date: Date;
+  onCompletedChange(completedTotal: number): void;
 }
 
 export interface IPossibleHabitsList {
