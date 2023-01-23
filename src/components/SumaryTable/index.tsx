@@ -38,7 +38,7 @@ export const SumaryTable: React.FC = () => {
         }             
       </div>
 
-      <div className="grid grid-rows-7 grid-flow-col gap-3 overflow-x-auto">
+      <div className="grid grid-rows-7 grid-flow-col gap-2 p-2 overflow-x-auto">
         {
           summary.length > 0 && summaryDates.map(date => {
             const dayInSummary = summary.find(day => {
