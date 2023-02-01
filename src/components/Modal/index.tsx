@@ -2,7 +2,7 @@ import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'phosphor-react';
 import { NewHabitForm } from '../NewHabitForm';
-import { IModal } from '../../intefaces';
+import { IModal } from '../../interfaces';
 
 export const Modal: React.FC<IModal> = ({open, onOpenChange, handleFeedbackAlert}) => {
 

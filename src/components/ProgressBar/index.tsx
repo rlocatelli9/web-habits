@@ -1,6 +1,6 @@
 import * as Progress from '@radix-ui/react-progress';
 import React from 'react';
-import { IProgressBar } from '../../intefaces';
+import { IProgressBar } from '../../interfaces';
 
 
 const ProgressBar: React.FC<IProgressBar> = ({value, max, progress}) => {

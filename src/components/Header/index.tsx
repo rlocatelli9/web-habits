@@ -2,7 +2,7 @@ import React from 'react';
 import {Plus} from 'phosphor-react'
 
 import logo from '../../assets/logo.svg'
-import { IHeader } from '../../intefaces';
+import { IHeader } from '../../interfaces';
 
 export const Header: React.FC<IHeader> = ({toggleModal}) => {  
 

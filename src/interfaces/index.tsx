@@ -63,3 +63,14 @@ export interface IAlert extends AlertDialog.AlertDialogProps {
 }
 
 export type ICheckbox = Checkbox.CheckboxProps
+
+export interface IUser {
+  username: string;
+  password: string;
+}
+
+export interface IAuthContext {
+  user: IUser
+  signin: (user: string, callback: VoidFunction) => void;
+  signout: (callback: VoidFunction) => void;
+}

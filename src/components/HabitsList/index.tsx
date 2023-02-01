@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import { api } from '../../lib/axios';
 
-import { IHabitsList, IPossibleHabitsList } from '../../intefaces';
+import { IHabitsList, IPossibleHabitsList } from '../../interfaces';
 
 export const HabitsList: React.FC<IHabitsList> = ({date, onCompletedChange}) => {
   const [possibleHabits, setPossibleHabits] = useState<IPossibleHabitsList[]>([])

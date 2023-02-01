@@ -1,6 +1,6 @@
 import React from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import { IAlert } from '../../intefaces';
+import { IAlert } from '../../interfaces';
 
 export const Alert: React.FC<IAlert> = ({open, feedback, onOpenChange}) => {
   return (

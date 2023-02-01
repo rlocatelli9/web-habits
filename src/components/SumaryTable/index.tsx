@@ -4,7 +4,7 @@ import { api } from '../../lib/axios';
 import { generateDatesFromYearBeginning } from '../../utils/generate-dates-from-year-beginning';
 import { HabitDay } from '../HabitDay';
 
-import { ISummary } from '../../intefaces';
+import { ISummary } from '../../interfaces';
 import { WEEK_DAYS } from '../../utils/constants';
 
 const summaryDates = generateDatesFromYearBeginning()

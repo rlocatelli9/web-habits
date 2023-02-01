@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import React, { useCallback, useEffect, useState } from 'react';
 import ProgressBar from '../ProgressBar';
 
-import { IHabitDay } from '../../intefaces';
+import { IHabitDay } from '../../interfaces';
 import {HabitsList} from '../HabitsList';
 
 export const HabitDay: React.FC<IHabitDay> = ({defaultCompleted = 0, amount = 0, date}) => {

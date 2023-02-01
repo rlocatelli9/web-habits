@@ -1,7 +1,7 @@
 import React from 'react';
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import { Check } from 'phosphor-react';
-import { ICheckbox } from '../../intefaces';
+import { ICheckbox } from '../../interfaces';
 
 const Checkbox: React.FC<ICheckbox> = ({children, ...rest}) => {
   if(!children) return null

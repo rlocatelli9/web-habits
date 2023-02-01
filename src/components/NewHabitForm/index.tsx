@@ -1,6 +1,6 @@
 import { Check } from 'phosphor-react';
 import React, { FormEvent, useCallback, useState } from 'react';
-import { INewHabitForm } from '../../intefaces';
+import { INewHabitForm } from '../../interfaces';
 import { api } from '../../lib/axios';
 import Checkbox from '../Checkbox';
 
