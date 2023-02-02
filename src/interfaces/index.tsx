@@ -1,10 +1,11 @@
 
-import { ReactElement } from 'react';
+import { InputHTMLAttributes } from 'react';
 
 import * as Checkbox from '@radix-ui/react-checkbox'
 import * as Dialog from '@radix-ui/react-dialog';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import * as Progress from '@radix-ui/react-progress';
+import { IconProps } from 'phosphor-react';
 
 
 
@@ -65,12 +66,28 @@ export interface IAlert extends AlertDialog.AlertDialogProps {
 export type ICheckbox = Checkbox.CheckboxProps
 
 export interface IUser {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface IAuthContext {
-  user: IUser
-  signin: (user: string, callback: VoidFunction) => void;
+  user?: IUser;
+  signin: (user: IUser, callback: VoidFunction) => void;
   signout: (callback: VoidFunction) => void;
+}
+
+export interface IPassword {
+  passwordShown: boolean;
+  togglePassword: () => void;
+}
+
+export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  icon?: React.ComponentType<IconProps>;
+  passwordState?: IPassword;
+}
+
+export interface IEventFormLogin {
+  email: { value: string };
+  password: { value: string };
 }

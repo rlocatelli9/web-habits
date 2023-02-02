@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+@layer components {
+  .input-primary {
+    @apply p-4 pl-10 w-full bg-zinc-900 focus-within:text-zinc-300 focus:outline-none;
+  }
+  .input-password {
+    @apply p-4 pl-10 pr-8 w-full bg-zinc-900 focus-within:text-zinc-300 focus:outline-none;
+  }
+  .border-focus-input {
+    @apply focus-within:text-violet-600 ring-2 ring-offset-2 ring-violet-600 ring-offset-background rounded-sm;
+  }
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+}
