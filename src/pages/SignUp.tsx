@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 import logo from '../assets/logo.svg'
-import { EnvelopeSimple, Password, User } from 'phosphor-react';
+import { ArrowLeft, EnvelopeSimple, Password, User } from 'phosphor-react';
 import { Input } from '../components/Input';
 import { IEventFormSignUp, IInputError } from '../interfaces';
 
@@ -36,25 +36,20 @@ export const SignUp: React.FC = () => {
       return
     }
 
-      const response = await auth.signup({
-        name: InputName.value,
-        email: InputEmail.value,
-        password: InputPassword.value,
-      }, () => {
-        navigate('/login', { replace: true });
+    const response = await auth.signup({
+      name: InputName.value,
+      email: InputEmail.value,
+      password: InputPassword.value,
+    }, () => {
+      navigate('/login', { replace: true });
+    });
+
+    if(response.validationError){
+      response.fields && response.fields.forEach((field: string | number) => {
+        setErrorFields({[field]: "valor inválido"})
       });
-
-      if(response.validationError){
-        console.log({response})
-        response.fields && response.fields.forEach((field: string | number) => {
-          setErrorFields({[field]: "valor inválido"})
-        });
-        return 
-      }
-
-      setErrorFields(undefined!)
       return 
-    
+    }    
   }
 
   return (
@@ -104,6 +99,13 @@ export const SignUp: React.FC = () => {
                 <button type="submit" className="uppercase font-bold mt-6 rounded-sm p-4 flex items-center justify-center gap-3 font-semibol bg-violet-700 hover:bg-violet-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-600 focus:ring-offset-2 focus:ring-offset-background">
                   Cadastrar
                 </button>
+
+                <a 
+                  href="/login"
+                  className="flex justify-center mx-auto mt-4 uppercase text-zinc-500 w-fit font-bold focus:outline-none hover:text-zinc-400 transition-colors"
+                >
+                  voltar para login
+                </a>
 
               </form>
             </div>
