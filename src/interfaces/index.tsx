@@ -68,11 +68,13 @@ export type ICheckbox = Checkbox.CheckboxProps
 export interface IUser {
   email: string;
   password: string;
+  name?: string;
 }
 
 export interface IAuthContext {
   user?: IUser;
   signin: (user: IUser, callback: VoidFunction) => void;
+  signup: (user: IUser, callback: VoidFunction) => any;
   signout: (callback: VoidFunction) => void;
 }
 
@@ -85,9 +87,22 @@ export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon?: React.ComponentType<IconProps>;
   passwordState?: IPassword;
+  error?: string;
 }
 
 export interface IEventFormLogin {
   email: { value: string };
   password: { value: string };
+}
+
+export interface IEventFormSignUp {
+  name: {value: string};
+  email: { value: string };
+  password: { value: string };
+}
+
+export interface IInputError {
+  email?:string;
+  password?:string;
+  confirmPassword?:string;
 }

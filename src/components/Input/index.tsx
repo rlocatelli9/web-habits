@@ -3,7 +3,7 @@ import { Eye, EyeSlash } from 'phosphor-react';
 import React, { useCallback, useRef, useState } from 'react';
 import { IInput } from '../../interfaces';
 
-export const Input: React.FC<IInput> = ({ name, icon: Icon, passwordState=undefined, ...restProps }) => {
+export const Input: React.FC<IInput> = ({ name, icon: Icon, passwordState=undefined, error=undefined, ...restProps }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
@@ -25,6 +25,7 @@ export const Input: React.FC<IInput> = ({ name, icon: Icon, passwordState=undefi
   }
 
   return (
+  <div className="flex flex-col">
     <div
       data-testid="input-container-focus"
       className={clsx("relative rounded-sm mt-3 text-zinc-300 bg-zinc-900 flex items-center h-full w-full", {
@@ -58,5 +59,8 @@ export const Input: React.FC<IInput> = ({ name, icon: Icon, passwordState=undefi
         </button>
       ) : null}
     </div>
-  );
-};
+    {error ? (
+      <span className="flex w-full flex-wrap text-red-600 p-1">{error}</span>
+    ):null}
+  </div>);
+}
