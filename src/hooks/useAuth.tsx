@@ -44,13 +44,13 @@ function AuthStatus() {
   let auth = useAuth();
   let navigate = useNavigate();
 
-  if (!auth.user?.username) {
+  if (!auth.user?.email) {
     return null
   }
 
   return (
     <p>
-      Welcome {auth.user.username}!{" "}
+      Welcome {auth.user.email}!{" "}
       <button
         onClick={() => {
           auth.signout(() => navigate("/login"));

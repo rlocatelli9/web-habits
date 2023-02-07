@@ -6,25 +6,25 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
 import { AuthStatus, RequireAuth } from "./hooks/useAuth";
-import { Home } from "./pages/Home";
+import { Home as HomePage } from "./pages/Home";
 import { Login as LoginPage} from "./pages/Login";
+import { SignUp as SignUpPage} from "./pages/SignUp";
 
 export function App() {
   return (
     <AuthProvider>      
       <Routes>
-        <Route element={<InitialPage />}>
-          <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <Home />
-              </RequireAuth>
-            }
-          />
-        </Route>
+          path="/app"
+          element={
+            <RequireAuth>
+              <HomePage />
+            </RequireAuth>
+          }
+        />
+          <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </AuthProvider>
   );
