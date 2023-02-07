@@ -9,11 +9,16 @@ let AuthContext = React.createContext<IAuthContext>(null!)
 function AuthProvider({ children }: { children: React.ReactNode }) {
   let [user, setUser] = React.useState<IUser|undefined>(undefined!);
 
-  let signin = (newUser: IUser, callback: VoidFunction) => {
-    return fakeAuthProvider.signin(() => {
-      setUser(newUser);
-      callback();
-    });
+  let signin = async (newUser: IUser, callback: VoidFunction) => {
+    try {
+      await Endpoints.Signup(newUser);
+      return callback();
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return error.response?.data
+      }
+      return error
+    }
   };
 
   let signup = async (newUser: IUser, callback: VoidFunction) => {
